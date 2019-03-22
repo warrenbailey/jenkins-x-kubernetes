@@ -1,14 +1,11 @@
 agent:
-  label: jenkins-jx-base
-  container: jx-base
+  label: builder-go
+  container: go
 pipelines:
   pullRequest:
     build:
       steps:
         - sh: make build
-          agent:
-            label: builder-go
-            container: builder-go
           name: build
         - dir: charts/REPLACE_ME_APP_NAME
           steps:
