@@ -15,9 +15,6 @@ pipelines:
   release:
     build:
       steps:
-        - sh: jx step tag --version $VERSION
-          name: tag-version
-          comment: Let's create tag in Git
         - sh: make release
           name: release
         - dir: charts/REPLACE_ME_APP_NAME
