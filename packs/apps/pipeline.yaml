@@ -6,6 +6,9 @@ pipelines:
     build:
       steps:
         - sh: make build
+          agent:
+            label: builder-go
+            container: builder-go
           name: build
         - dir: charts/REPLACE_ME_APP_NAME
           steps:
