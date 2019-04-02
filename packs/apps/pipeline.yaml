@@ -1,5 +1,5 @@
 agent:
-  label: builder-go
+  label: docker.io/golang:1.12.1
   container: go
 pipelines:
   pullRequest:
