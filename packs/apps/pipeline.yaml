@@ -1,13 +1,13 @@
 agent:
   label: builder-go
-  container: gcr.io/jenkinsxio/builder-go:0.0.0-SNAPSHOT-PR-380-56
+  container: golang:1.12.1-alpine3.9
 pipelines:
   pullRequest:
     build:
       steps:
         - sh: make build
           name: build
-          container: gcr.io/jenkinsxio/builder-go:0.0.0-SNAPSHOT-PR-380-56
+          container: golang:1.12.1-alpine3.9
         - dir: charts/REPLACE_ME_APP_NAME
           steps:
           - sh: jx step helm build
@@ -17,7 +17,7 @@ pipelines:
       steps:
         - sh: make build
           name: build
-          container: gcr.io/jenkinsxio/builder-go:0.0.0-SNAPSHOT-PR-380-56
+          container: golang:1.12.1-alpine3.9
         - dir: charts/REPLACE_ME_APP_NAME
           steps:
           - sh: make tag
@@ -32,7 +32,7 @@ pipelines:
         steps:
           - sh: make release
             name: release
-            container: gcr.io/jenkinsxio/builder-go:0.0.0-SNAPSHOT-PR-380-56
+            container: golang:1.12.1-alpine3.9
           - dir: charts/REPLACE_ME_APP_NAME
             steps:
             - comment: Let's release the helm chart
