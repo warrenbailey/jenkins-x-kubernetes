@@ -1,6 +1,6 @@
 agent:
   label: builder-go
-  container: go
+  container: gcr.io/jenkinsxio/builder-go:0.0.0-SNAPSHOT-PR-380-56
 pipelines:
   pullRequest:
     build:
