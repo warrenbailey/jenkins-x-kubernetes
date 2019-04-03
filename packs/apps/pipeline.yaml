@@ -1,6 +1,6 @@
 agent:
   label: builder-go
-  container: builder-go
+  container: go
 pipelines:
   pullRequest:
     build:
