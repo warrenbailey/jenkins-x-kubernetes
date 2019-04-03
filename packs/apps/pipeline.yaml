@@ -12,7 +12,6 @@ pipelines:
           steps:
           - sh: jx step helm build
             name: helm-build
-
   release:
     build:
       steps:
