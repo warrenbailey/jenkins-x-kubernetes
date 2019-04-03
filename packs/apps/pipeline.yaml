@@ -7,10 +7,12 @@ pipelines:
       steps:
         - sh: make build
           name: build
+          container: gcr.io/jenkinsxio/builder-go:0.1.339
         - dir: charts/REPLACE_ME_APP_NAME
           steps:
           - sh: jx step helm build
             name: helm-build
+            container: gcr.io/jenkinsxio/builder-go:0.1.339
 
   release:
     build:
@@ -21,6 +23,7 @@ pipelines:
           steps:
           - sh: make tag
             name: tag
+            container: gcr.io/jenkinsxio/builder-go:0.1.339
           - sh: jx step helm build
             name: helm-build
           - comment: Version the helm chart
