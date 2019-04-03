@@ -1,6 +1,6 @@
 agent:
   label: builder-go
-  container: gcr.io/jenkinsxio/builder-go:0.1.339
+  container: go
 pipelines:
   pullRequest:
     build:
@@ -19,6 +19,7 @@ pipelines:
       steps:
         - sh: make build
           name: build
+          container: gcr.io/jenkinsxio/builder-go:0.1.339
         - dir: charts/REPLACE_ME_APP_NAME
           steps:
           - sh: make tag
@@ -29,16 +30,20 @@ pipelines:
           - comment: Version the helm chart
             sh: jx step helm version
             name: helm-version
+            container: gcr.io/jenkinsxio/builder-go:0.1.339
     promote:
       build:
         steps:
           - sh: make release
             name: release
+            container: gcr.io/jenkinsxio/builder-go:0.1.339
           - dir: charts/REPLACE_ME_APP_NAME
             steps:
             - comment: Let's release the helm chart
               sh: jx step helm release
               name: helm-release
+              container: gcr.io/jenkinsxio/builder-go:0.1.339
             - comment: Let's promote through all 'Auto' promotion Environments
               sh: jx promote -b --all-auto --timeout 1h --version \$(cat ../../VERSION)
               name: jx-promote
+              container: gcr.io/jenkinsxio/builder-go:0.1.339
