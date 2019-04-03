@@ -1,6 +1,6 @@
 agent:
   label: builder-go
-  container: gcr.io/jenkinsxio/builder-go@sha256:bd805eb453738f368972965ea705b17075f9da8f907579aacdafe521191f2799
+  container: go
 pipelines:
   pullRequest:
     build:
